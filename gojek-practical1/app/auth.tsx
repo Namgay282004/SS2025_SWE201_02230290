@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { Link, router } from 'expo-router';
 
 export default function AuthScreen() {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [selectedCountryCode, setSelectedCountryCode] = useState('+62'); // Default to Indonesia
+
+  // Static list of country codes
+  const countryCodes = [
+    { label: 'Indonesia (+62)', value: '+62' },
+    { label: 'United States (+1)', value: '+1' },
+    { label: 'India (+91)', value: '+91' },
+    { label: 'United Kingdom (+44)', value: '+44' },
+    { label: 'Bhutan (+975)', value: '+975' },
+  ];
 
   // Handle continue button press
   const handleContinue = () => {
-    Keyboard.dismiss(); // Dismiss the keyboard
-    console.log('Phone Number:', phoneNumber);
-    // Add navigation logic here (e.g., navigate to OTP screen/receive the OTP)
+    Keyboard.dismiss(); 
+    router.push('/otp-verification'); // Navigate to OTP verification screen
   };
 
   return (
     <View style={styles.container}>
-      {/* Custom Back Button */}
+      {/* Back Button for Index */}
       <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
@@ -25,7 +35,18 @@ export default function AuthScreen() {
 
       {/* Phone Number Input */}
       <View style={styles.phoneInputContainer}>
-        <Text style={styles.countryCode}>+62</Text>
+        {/* Country Code Dropdown */}
+        <Picker
+          selectedValue={selectedCountryCode}
+          style={styles.picker}
+          onValueChange={(itemValue) => setSelectedCountryCode(itemValue)}
+        >
+          {countryCodes.map((country) => (
+            <Picker.Item key={country.value} label={country.label} value={country.value} />
+          ))}
+        </Picker>
+
+        {/* Phone Number Input */}
         <TextInput
           style={styles.phoneInput}
           placeholder="Phone number"
@@ -86,19 +107,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     marginBottom: 20,
+    width: '100%',
   },
-  countryCode: {
-    fontSize: 16,
-    color: '#000',
-    marginRight: 10,
+  picker: {
+    width: 150,
+    height: 50,
   },
   phoneInput: {
     flex: 1,
     fontSize: 16,
     color: '#000',
     height: 50,
+    paddingLeft: 10,
   },
   continueButton: {
     width: '100%',
