@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# To-Do App with Firebase
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a simple To-Do List application built as part of a class practical. The app demonstrates the use of a monolithic architecture with separate layers for presentation, business logic, service, persistence, and database.
 
-## Get started
+The application supports full CRUD functionality and uses Firebase for authentication and data persistence. All actions are protected using user token verification.
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- User authentication using Firebase
+- Create Task: Add a new task with a due date
+- Read Task: View all tasks and task details
+- Update Task: Edit an existing task
+- Delete Task: Remove a task
+- Data persistence using Firebase (Firestore or Realtime Database)
+- Token verification to protect all CRUD operations
 
-2. Start the app
+## Architecture
 
-   ```bash
-   npx expo start
-   ```
+- Presentation Layer: User interface components
+- Business Logic Layer: Handles application logic
+- Service Layer: Connects the frontend to Firebase
+- Persistence Layer: Manages interactions with Firebase
+- Database Layer: Firebase Firestore or Realtime Database
 
-In the output, you'll find options to open the app in a
+## Actor
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- User
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Use Cases
 
-## Get a fresh project
+- Create Task: User can create a task and set a due date
+- Read Task: User can view a list of all tasks and task details
+- Update Task: User can update the task information
+- Delete Task: User can delete a task
 
-When you're ready, run:
+## Screenshots
 
-```bash
-npm run reset-project
-```
+![](image/1.png)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+![](image/2.png)
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Setup Instructions
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. Clone the repository
+2. Run `npm install` or `yarn`
+3. Set up Firebase project and add configuration to the project
+4. Run the app with `npm start`, `yarn start`, or `expo start` depending on your setup
